@@ -2,7 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'likes_providers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Likes extends _$Likes {
   @override
   Map<String, int> build({required int id}) {

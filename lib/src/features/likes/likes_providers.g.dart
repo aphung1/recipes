@@ -6,7 +6,7 @@ part of 'likes_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$likesHash() => r'e610d55a8562ee7deed99afaa11b38fcdb86b6f4';
+String _$likesHash() => r'3c70e38b0f7cd20a29221ddc63b30c547c6297ce';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-abstract class _$Likes extends BuildlessAutoDisposeNotifier<Map<String, int>> {
+abstract class _$Likes extends BuildlessNotifier<Map<String, int>> {
   late final int id;
 
   Map<String, int> build({
@@ -80,8 +80,7 @@ class LikesFamily extends Family<Map<String, int>> {
 }
 
 /// See also [Likes].
-class LikesProvider
-    extends AutoDisposeNotifierProviderImpl<Likes, Map<String, int>> {
+class LikesProvider extends NotifierProviderImpl<Likes, Map<String, int>> {
   /// See also [Likes].
   LikesProvider({
     required this.id,
