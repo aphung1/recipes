@@ -87,12 +87,22 @@ class _Body extends ConsumerWidget {
       children: <Widget>[
         Image.asset(
           'assets/${data[id]["image"]}',
-          height: MediaQuery.of(context).size.height / 2.5,
+          height: MediaQuery.of(context).size.height / 3,
           width: double.infinity,
           fit: BoxFit.cover,
           alignment: Alignment.center,
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Text(data[id]["title"],
+              style: Theme.of(context).textTheme.headlineMedium,
+              textAlign: TextAlign.center),
+        ),
         LikesView(id: id),
+        Text(
+          "Ingredients",
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         Expanded(
           child: ListView.builder(
             itemCount: 4,
