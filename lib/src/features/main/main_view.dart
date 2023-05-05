@@ -35,14 +35,81 @@ class MainView extends ConsumerWidget {
 class _Body extends ConsumerWidget {
   final int id;
 
-  const _Body(this.id);
+  _Body(this.id);
+
+  final List<Map> data = [
+    {
+      "image": "breakfast.jpg",
+      "title": "Blueberry Banana Pancakes",
+      "ingredients": [
+        "Blueberries",
+        "Bananas",
+        "Flour",
+        "Sugar",
+        "Milk",
+        "Salt",
+        "Butter"
+      ]
+    },
+    {
+      "image": "lunch.jpg",
+      "title": "Roasted tomato pesto pasta",
+      "ingredients": [
+        "Sun-roasted cherry tomatoes",
+        "Pesto",
+        "Mushroom",
+        "Fettuccine",
+        "Basil",
+        "Beef",
+        "Heavy Cream",
+        "Salt",
+        "Garlic"
+      ]
+    },
+    {
+      "image": "dinner.jpg",
+      "title": "Sesame crusted salmon fillets",
+      "ingredients": [
+        "Salmon",
+        "Sesame seeds",
+        "Soy sauce",
+        "Zucchini",
+        "Lemon",
+        "Salt",
+        "Oil"
+      ]
+    }
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[LikesView(id: id)],
-    ));
+    return Column(
+      children: <Widget>[
+        Image.asset(
+          'assets/${data[id]["image"]}',
+          height: MediaQuery.of(context).size.height / 2.5,
+          width: double.infinity,
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
+        ),
+        LikesView(id: id),
+        Expanded(
+          child: ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, position) {
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    data[id]["ingredients"][position],
+                    style: const TextStyle(fontSize: 22.0),
+                  ),
+                ),
+              );
+            },
+          ),
+        )
+      ],
+    );
   }
 }

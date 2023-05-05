@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:recipes/src/features/likes/likes_providers.dart';
-import 'package:recipes/src/features/main/main.dart';
 
 class LikesView extends ConsumerWidget {
   const LikesView({super.key, required this.id});
@@ -9,21 +8,18 @@ class LikesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(indexProvider);
-    final likes = ref.watch(likesProvider(id: currentIndex));
-
+    final likes = ref.watch(likesProvider(id: id));
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('${likes["likes"]}'),
         IconButton(
-            onPressed: () =>
-                ref.read(likesProvider(id: currentIndex).notifier).addLike(),
+            onPressed: () => ref.read(likesProvider(id: id).notifier).addLike(),
             icon: const Icon(Icons.thumb_up)),
         Text('${likes["dislikes"]}'),
         IconButton(
             onPressed: () =>
-                ref.read(likesProvider(id: currentIndex).notifier).addDislike(),
+                ref.read(likesProvider(id: id).notifier).addDislike(),
             icon: const Icon(Icons.thumb_down)),
       ],
     );
